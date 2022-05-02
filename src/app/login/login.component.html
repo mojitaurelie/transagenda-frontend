@@ -1,0 +1,17 @@
+<form class="login-form">
+  <div class="error" *ngIf="errorMessage.length > 0">
+    {{errorMessage}}
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-icon matPrefix>person</mat-icon>
+    <mat-label>Nom d'utilisateur</mat-label>
+    <input type="text" matInput [formControl]="usernameFormControl" placeholder="nonoDu80">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-icon matPrefix>lock</mat-icon>
+    <mat-label>Mot de passe</mat-label>
+    <input type="password" matInput [formControl]="passwordFormControl">
+  </mat-form-field>
+  <button mat-stroked-button (click)="loginOnClick()" type="button">Login</button>
+  <button mat-button *ngIf="allowRegister" type="button">Register</button>
+</form>

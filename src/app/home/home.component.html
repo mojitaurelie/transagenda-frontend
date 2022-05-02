@@ -1,0 +1,39 @@
+<div id="titlebar">
+  <span>Dashboard</span>
+  <button mat-button id="logout-btn" (click)="onLogoutClick()"><mat-icon>logout</mat-icon></button>
+</div>
+
+<div class="content">
+  <mat-card class="calendar-card">
+    <mat-card-subtitle><mat-icon class="widget-icon">calendar_today</mat-icon> Calendrier</mat-card-subtitle>
+    <mat-card-content>
+      <p>Vous n'avez pas de prochain rendez-vous</p>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+      <button mat-button>Ajouter un RDV</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="ordonnance-card">
+    <mat-card-subtitle><mat-icon class="widget-icon">description</mat-icon> Ordonnances</mat-card-subtitle>
+    <mat-card-content>
+      <p>Vous n'avez pas d'ordonnance</p>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+      <button mat-button>Ajouter une ordonnance</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="contact-card">
+    <mat-card-subtitle><mat-icon class="widget-icon">contacts</mat-icon> Contacts</mat-card-subtitle>
+    <mat-card-content>
+      <p>Vous n'avez pas de contact</p>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+      <button mat-button>Ajouter un contact</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

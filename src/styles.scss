@@ -1,1 +1,45 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$trans-agenda-primary: mat.define-palette(mat.$indigo-palette);
+$trans-agenda-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$trans-agenda-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$trans-agenda-theme: mat.define-light-theme((
+  color: (
+    primary: $trans-agenda-primary,
+    accent: $trans-agenda-accent,
+    warn: $trans-agenda-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($trans-agenda-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body.login {
+  background: rgb(242,178,231) !important;
+  background: linear-gradient(125deg, rgba(242,178,231,1) 0%, rgba(237,164,239,1) 25%, rgba(221,173,252,1) 50%, rgba(203,183,255,1) 75%, rgba(185,192,255,1) 100%) !important;
+  color: #fff !important
+}
