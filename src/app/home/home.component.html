@@ -1,5 +1,8 @@
 <div id="titlebar">
-  <span>Dashboard</span>
+  <div>
+    Dashboard
+    <small>{{ displayName }}</small>
+  </div>
   <button mat-button id="logout-btn" (click)="onLogoutClick()"><mat-icon>logout</mat-icon></button>
 </div>
 
@@ -8,6 +11,23 @@
     <mat-card-subtitle><mat-icon class="widget-icon">calendar_today</mat-icon> Calendrier</mat-card-subtitle>
     <mat-card-content>
       <p>Vous n'avez pas de prochain rendez-vous</p>
+      <p *ngIf="appointments.length === 0">Vous n'avez pas de prochain rendez-vous</p>
+      <div *ngFor="let appointment of appointments">
+        <mat-card>
+          <mat-card-content>
+            <div class="margin">
+              Vous avez rendez-vous avec
+              Dr {{ appointment.contact.lastname }}
+              le {{ appointment.date | date }}
+            </div>
+            <mat-divider></mat-divider>
+            <div class="margin">
+              <fa-icon [icon]="faMapPin"></fa-icon>
+              {{ appointment.address }}
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </mat-card-content>
     <mat-divider inset></mat-divider>
     <mat-card-actions>
@@ -18,7 +38,20 @@
   <mat-card class="ordonnance-card">
     <mat-card-subtitle><mat-icon class="widget-icon">description</mat-icon> Ordonnances</mat-card-subtitle>
     <mat-card-content>
-      <p>Vous n'avez pas d'ordonnance</p>
+      <p *ngIf="prescriptions.length === 0">Vous n'avez pas d'ordonnance</p>
+      <div *ngFor="let prescription of prescriptions">
+        <mat-card>
+          <div *ngFor="let medecine of prescription.medecines">
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <div class="margin">
+                <fa-icon [icon]="faPills"></fa-icon>
+                {{ medecine.name }} ({{medecine.dose}}/{{medecine.unit}})
+              </div>
+            </mat-list-item>
+          </div>
+        </mat-card>
+      </div>
     </mat-card-content>
     <mat-divider inset></mat-divider>
     <mat-card-actions>
@@ -29,7 +62,13 @@
   <mat-card class="contact-card">
     <mat-card-subtitle><mat-icon class="widget-icon">contacts</mat-icon> Contacts</mat-card-subtitle>
     <mat-card-content>
-      <p>Vous n'avez pas de contact</p>
+      <p *ngIf="contacts.length === 0">Vous n'avez pas de contact</p>
+      <div *ngFor="let contact of contacts">
+        <mat-card>
+          <mat-icon class="align">person</mat-icon>
+          {{ contact.firstname }} {{ contact.lastname }}
+        </mat-card>
+      </div>
     </mat-card-content>
     <mat-divider inset></mat-divider>
     <mat-card-actions>

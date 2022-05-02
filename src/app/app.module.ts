@@ -14,10 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {SystemService} from "./shared/services/system/system.service";
 import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
+import {AuthInterceptor} from "./shared/guard/interceptor";
+import {MatListModule} from "@angular/material/list";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -36,9 +39,20 @@ import {MatDividerModule} from "@angular/material/divider";
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule,
+    FontAwesomeModule
   ],
-  providers: [AuthGuard, AuthService, SystemService],
+  providers: [
+    AuthGuard,
+    AuthService,
+    SystemService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

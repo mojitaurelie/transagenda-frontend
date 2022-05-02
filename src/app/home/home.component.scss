@@ -8,6 +8,9 @@
   #logout-btn {
     margin-left: auto;
   }
+  small {
+    font-size: initial;
+  }
 }
 
 .content {
@@ -23,4 +26,13 @@
 .widget-icon {
   font-size: 20px;
   vertical-align: middle;
+}
+
+.align {
+  vertical-align: middle !important;
+}
+
+.margin {
+  margin: 0.5rem;
+  padding: 0.5rem;
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ErrorResponse} from "../error.model";
 import {Router} from "@angular/router";
+import {User} from "../../model/data.model";
 
 const TOKEN_KEY = "token";
 
@@ -37,7 +38,7 @@ export class AuthService {
     return !!this.token;
   }
 
-  public login(username: string, password: string): Promise<boolean> {
+  public async login(username: string, password: string): Promise<boolean> {
     if (username.length === 0 || password.length === 0) {
       throw new Error("username or password empty");
     }
@@ -57,6 +58,19 @@ export class AuthService {
     localStorage.removeItem(TOKEN_KEY);
     this.token = undefined;
     this.router.navigate(['/login']);
+  }
+
+  public getToken(): string | undefined {
+    return this.token;
+  }
+
+  public async getUser(): Promise<User> {
+    return this.http.get<User|ErrorResponse>("/api/user").toPromise().then(res => {
+      if ((res as ErrorResponse).error) {
+        throw new Error((res as ErrorResponse).message)
+      }
+      return (res as User)
+    });
   }
 
   private setToken(token: string) {

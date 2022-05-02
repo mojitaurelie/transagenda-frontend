@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {ErrorResponse} from "../error.model";
 
-class AllowRegisterResponse {
-  allow_register: boolean = false
+class ServerInformationResponse {
+  allow_register!: boolean;
+  version!: string;
+  api_version!: number;
+  go_version!: string;
+  os_name!: string;
+  os_architecture!: string;
 }
 
 @Injectable({
@@ -12,12 +18,12 @@ export class SystemService {
 
   constructor(private http: HttpClient) { }
 
-  public AllowRegister(): Promise<boolean> {
-    return this.http.get<AllowRegisterResponse>("/api/system/allow_register").toPromise().then(res => {
-      if (res.allow_register !== undefined) {
-        return res.allow_register;
+  public ServerInformation(): Promise<ServerInformationResponse> {
+    return this.http.get<ServerInformationResponse|ErrorResponse>("/api/system/information").toPromise().then(res => {
+      if ((res as ErrorResponse).error) {
+        throw new Error((res as ErrorResponse).message)
       }
-      throw new Error("allow_register not found");
+      return (res as ServerInformationResponse)
     })
   }
 }
