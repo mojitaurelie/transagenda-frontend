@@ -12,8 +12,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$trans-agenda-primary: mat.define-palette(mat.$indigo-palette);
-$trans-agenda-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$trans-agenda-primary: mat.define-palette(mat.$light-blue-palette, 100, A100, A200);
+$trans-agenda-accent: mat.define-palette(mat.$pink-palette, 100, A100, A200);
 
 // The warn palette is optional (defaults to red).
 $trans-agenda-warn: mat.define-palette(mat.$red-palette);
@@ -38,8 +38,12 @@ $trans-agenda-theme: mat.define-light-theme((
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-body.login {
+body.login, .loading {
   background: rgb(242,178,231) !important;
   background: linear-gradient(125deg, rgba(242,178,231,1) 0%, rgba(237,164,239,1) 25%, rgba(221,173,252,1) 50%, rgba(203,183,255,1) 75%, rgba(185,192,255,1) 100%) !important;
   color: #fff !important
+}
+
+.input-full-width {
+  width: 100%
 }

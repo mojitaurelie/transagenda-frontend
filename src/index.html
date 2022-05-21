@@ -9,8 +9,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/loading.css">
 </head>
-<body class="mat-typography">
-  <app-root></app-root>
+<body class="mat-typography loading">
+  <app-root>
+    <style>
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+      .text {
+        font-size: 2rem;
+        text-align: center;
+      }
+    </style>
+    <div class="center">
+      <div class="text">
+        🏳️‍⚧ Trans Agenda
+      </div>
+      <div class="la-ball-fall">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </app-root>
 </body>
 </html>

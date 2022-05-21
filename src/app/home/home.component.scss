@@ -1,28 +1,3 @@
-#titlebar {
-  display: flex;
-  padding: 2.5rem;
-  background: rgb(242,178,231);
-  background: linear-gradient(180deg, rgba(242,178,231,0.4) 7%, rgba(165,230,242,0.3) 31%, rgba(2,0,36,0) 75%);
-  font-weight: 100;
-  font-size: 2rem;
-  #logout-btn {
-    margin-left: auto;
-  }
-  small {
-    font-size: initial;
-  }
-}
-
-.content {
-  width: 90%;
-  margin: auto;
-  padding: 10px;
-
-  mat-card {
-    margin-bottom: 1rem;
-  }
-}
-
 .widget-icon {
   font-size: 20px;
   vertical-align: middle;
@@ -35,4 +10,8 @@
 .margin {
   margin: 0.5rem;
   padding: 0.5rem;
+}
+
+mat-card {
+  margin-bottom: 1rem;
 }

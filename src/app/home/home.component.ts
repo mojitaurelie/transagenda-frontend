@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../shared/services/auth/auth.service";
 import {DataService} from "../shared/services/data/data.service";
 import {Appointment, Contact, Prescription} from "../shared/model/data.model";
 import { faPills, faMapPin } from '@fortawesome/free-solid-svg-icons';
@@ -14,35 +13,32 @@ export class HomeComponent implements OnInit {
   faPills = faPills;
   faMapPin = faMapPin;
 
-  displayName = "";
+
   contacts: Contact[] = [];
   appointments: Appointment[] = [];
   prescriptions: Prescription[] = [];
 
-  constructor(private authService: AuthService, private dataService: DataService) {
-    authService.getUser().then(user => {
-      this.displayName = `${user.firstname} ${user.lastname}`;
-    });
+  loadingAppointment = true;
+  loadingContact = true;
+  loadingPrescriptions = true;
+
+  constructor(private dataService: DataService) {
     this.load();
   }
 
   private load() {
     this.dataService.getContacts().then(contacts => {
       this.contacts = contacts;
-    });
+    }).finally(() => this.loadingContact = false);
     this.dataService.getAppointments().then(appointments => {
       this.appointments = appointments;
-    });
+    }).finally(() => this.loadingAppointment = false);
     this.dataService.getPrescriptions().then(prescriptions => {
       this.prescriptions = prescriptions;
-    });
+    }).finally(() => this.loadingPrescriptions = false);
   }
 
   ngOnInit(): void {
-  }
-
-  onLogoutClick() {
-    this.authService.logout();
   }
 
 }

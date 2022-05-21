@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Ajouter un rendez-vous</h1>
+<div mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field class="input-full-width" appearance="fill">
+      <mat-label>Adresse</mat-label>
+      <input type="text" matInput [formControl]="addressFormControl"
+             placeholder="14 route de Paris">
+      <mat-error *ngIf="addressFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button>AJOUTER</button>
+  <button mat-button (click)="onNoClick()">ANNULER</button>
+</div>

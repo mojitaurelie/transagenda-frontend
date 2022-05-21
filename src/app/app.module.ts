@@ -20,13 +20,26 @@ import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
 import {AuthInterceptor} from "./shared/guard/interceptor";
 import {MatListModule} from "@angular/material/list";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {AddAppointmentDialog, CalendarComponent} from './calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+
+// FullCalendar module
+import dayGridPlugin from '@fullcalendar/daygrid';
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin
+]);
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CalendarComponent,
+    AddAppointmentDialog
   ],
   imports: [
     BrowserModule,
@@ -41,7 +54,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatCardModule,
     MatDividerModule,
     MatListModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatProgressSpinnerModule,
+    FullCalendarModule,
+    MatDialogModule
   ],
   providers: [
     AuthGuard,
